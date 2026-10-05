@@ -2,8 +2,10 @@
 import os
 
 # المسارات
-DATA_DIR = os.environ.get("DATA_DIR", "./data")
-SAVE_DIR = os.environ.get("SAVE_DIR", "./checkpoints")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.environ.get("DATA_DIR", os.path.join(ROOT, "data"))
+SAVE_DIR = os.environ.get("SAVE_DIR", os.path.join(ROOT, "checkpoints"))  # التدريب بيحفظ هنا
+WEIGHTS_DIR = os.path.join(ROOT, "weights")  # الموديل المتدرب الجاهز اللي جوه الريبو
 
 # الموديل
 MODEL_NAME = "efficientnet_b0"

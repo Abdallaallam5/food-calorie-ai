@@ -2,4 +2,5 @@ data/food-101/
 checkpoints/
 __pycache__/
 *.pth
+!weights/*.pth
 .ipynb_checkpoints/

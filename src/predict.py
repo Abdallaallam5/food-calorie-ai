@@ -3,6 +3,7 @@
 التشغيل:
     python -m src.predict path/to/image.jpg
 """
+import os
 import sys
 
 import torch
@@ -15,8 +16,16 @@ from .nutrition import CalorieCalculator
 from .portion import estimate_food_area
 
 
+def default_model_dir() -> str:
+    """لو في موديل متدرب في SAVE_DIR (مثلًا على Drive) نستخدمه، غير كده الموديل الجاهز اللي في الريبو."""
+    if os.path.exists(os.path.join(C.SAVE_DIR, "best_model.pth")):
+        return C.SAVE_DIR
+    return C.WEIGHTS_DIR
+
+
 class FoodClassifier:
-    def __init__(self, save_dir: str = C.SAVE_DIR, device: str | None = None):
+    def __init__(self, save_dir: str | None = None, device: str | None = None):
+        save_dir = save_dir or default_model_dir()
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.model, self.classes = load_trained(save_dir, self.device)
         self.tf = get_transforms(train=False)
@@ -33,7 +42,7 @@ class FoodClassifier:
 class CalorieEstimator:
     """صورة ← نوع الأكل ← السعرات."""
 
-    def __init__(self, save_dir: str = C.SAVE_DIR, device: str | None = None):
+    def __init__(self, save_dir: str | None = None, device: str | None = None):
         self.classifier = FoodClassifier(save_dir, device)
         self.calculator = CalorieCalculator()
 
