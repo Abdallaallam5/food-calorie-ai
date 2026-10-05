@@ -11,6 +11,7 @@ from PIL import Image
 from . import config as C
 from .data import get_transforms
 from .model import load_trained
+from .nutrition import CalorieCalculator
 
 
 class FoodClassifier:
@@ -28,7 +29,34 @@ class FoodClassifier:
                 for p, i in zip(top.values, top.indices)]
 
 
+class CalorieEstimator:
+    """صورة ← نوع الأكل ← السعرات."""
+
+    def __init__(self, save_dir: str = C.SAVE_DIR, device: str | None = None):
+        self.classifier = FoodClassifier(save_dir, device)
+        self.calculator = CalorieCalculator()
+
+    def estimate(self, image: Image.Image, size: str = "medium", grams: float | None = None):
+        preds = self.classifier.predict(image, top_k=5)
+        return self.calculator.estimate(preds, size=size, grams=grams)
+
+
+def format_result(r: dict) -> str:
+    lines = [
+        f"🍽️  {r['name_ar']} ({r['food']}) — ثقة {r['confidence']:.0%}",
+        f"⚖️  الكمية: ~{r['portion_g']} جرام",
+        f"🔥 السعرات: ~{r['calories']} kcal  (بين {r['calories_range'][0]} و {r['calories_range'][1]})",
+    ]
+    if r["uncertain"]:
+        lines.append("⚠️  الموديل مش متأكد، والرقم متوسط موزون بين أكتر من صنف")
+    if r["alternatives"]:
+        alts = "، ".join(f"{a['name_ar']} ({a['confidence']:.0%})" for a in r["alternatives"])
+        lines.append(f"🤔 احتمالات تانية: {alts}")
+    return "\n".join(lines)
+
+
 if __name__ == "__main__":
-    clf = FoodClassifier()
-    for r in clf.predict(Image.open(sys.argv[1])):
-        print(f"{r['food']:25s} {r['confidence']:.1%}")
+    # python -m src.predict image.jpg [small|medium|large]
+    size = sys.argv[2] if len(sys.argv) > 2 else "medium"
+    est = CalorieEstimator()
+    print(format_result(est.estimate(Image.open(sys.argv[1]), size=size)))

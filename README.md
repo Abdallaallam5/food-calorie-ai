@@ -6,7 +6,9 @@
 
 1. **التعرف على الأكل:** موديل EfficientNet متدرب بـ Transfer Learning على Food-101.
 2. **تقدير الكمية:** *(قريبًا)*
-3. **حساب السعرات:** *(قريبًا)* من جدول تغذية لكل 100 جرام.
+3. **حساب السعرات:** من جدول تغذية لكل 100 جرام (`data/nutrition/food101_nutrition.csv`).
+
+> القيم في الجدول تقريبية (متوسطات لوصفات شائعة)، ويُفضل مراجعتها مع [USDA FoodData Central](https://fdc.nal.usda.gov/).
 
 ## هيكل المشروع
 
@@ -17,11 +19,12 @@ food-calorie-ai/
 │   ├── data.py       # تحميل الداتا والـ transforms
 │   ├── model.py      # بناء الموديل وتحميله
 │   ├── train.py      # التدريب
-│   └── predict.py    # التنبؤ على صورة
+│   ├── nutrition.py  # حساب السعرات من جدول التغذية
+│   └── predict.py    # صورة ← صنف ← سعرات
 ├── notebooks/
 │   └── colab_runner.ipynb   # تشغيل المشروع على Colab
 ├── api/              # (قريبًا) FastAPI
-├── data/nutrition/   # (قريبًا) جدول السعرات
+├── data/nutrition/   # جدول السعرات للـ 101 صنف
 └── requirements.txt
 ```
 
@@ -36,14 +39,15 @@ food-calorie-ai/
 ```bash
 pip install -r requirements.txt
 python -m src.train                  # التدريب
-python -m src.predict pizza.jpg      # التنبؤ
+python -m src.predict pizza.jpg large   # الصنف والسعرات
 ```
 
 ## خطة العمل
 
 - [x] تجهيز البيئة واستكشاف الداتا
 - [x] تدريب موديل التصنيف
-- [ ] جدول السعرات وتقدير الكمية
+- [x] جدول السعرات وحساب الكالوريز
+- [ ] تقدير الكمية من الصورة
 - [ ] إضافة الأكل المصري
 - [ ] API بـ FastAPI
 - [ ] واجهة ويب + Deploy
