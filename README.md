@@ -5,7 +5,7 @@
 ## الفكرة
 
 1. **التعرف على الأكل:** موديل EfficientNet متدرب بـ Transfer Learning على Food-101.
-2. **تقدير الكمية:** *(قريبًا)*
+2. **تقدير الكمية:** الطبق بيتستخدم كمسطرة (قطره ~26 سم)، فبنقيس مساحة الأكل بالسم² ونحوّلها لجرامات حسب شكل الأكل.
 3. **حساب السعرات:** من جدول تغذية لكل 100 جرام (`data/nutrition/food101_nutrition.csv`).
 
 > القيم في الجدول تقريبية (متوسطات لوصفات شائعة)، ويُفضل مراجعتها مع [USDA FoodData Central](https://fdc.nal.usda.gov/).
@@ -19,6 +19,7 @@ food-calorie-ai/
 │   ├── data.py       # تحميل الداتا والـ transforms
 │   ├── model.py      # بناء الموديل وتحميله
 │   ├── train.py      # التدريب
+│   ├── portion.py    # تقدير مساحة الأكل من الصورة
 │   ├── nutrition.py  # حساب السعرات من جدول التغذية
 │   └── predict.py    # صورة ← صنف ← سعرات
 ├── notebooks/
@@ -39,7 +40,8 @@ food-calorie-ai/
 ```bash
 pip install -r requirements.txt
 python -m src.train                  # التدريب
-python -m src.predict pizza.jpg large   # الصنف والسعرات
+python -m src.predict pizza.jpg          # الكمية متقدّرة من الصورة
+python -m src.predict pizza.jpg large    # أو حدد الحجم بنفسك
 ```
 
 ## خطة العمل
@@ -47,7 +49,7 @@ python -m src.predict pizza.jpg large   # الصنف والسعرات
 - [x] تجهيز البيئة واستكشاف الداتا
 - [x] تدريب موديل التصنيف
 - [x] جدول السعرات وحساب الكالوريز
-- [ ] تقدير الكمية من الصورة
+- [x] تقدير الكمية من الصورة
 - [ ] إضافة الأكل المصري
 - [ ] API بـ FastAPI
 - [ ] واجهة ويب + Deploy

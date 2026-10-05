@@ -12,6 +12,7 @@ from . import config as C
 from .data import get_transforms
 from .model import load_trained
 from .nutrition import CalorieCalculator
+from .portion import estimate_food_area
 
 
 class FoodClassifier:
@@ -36,15 +37,31 @@ class CalorieEstimator:
         self.classifier = FoodClassifier(save_dir, device)
         self.calculator = CalorieCalculator()
 
-    def estimate(self, image: Image.Image, size: str = "medium", grams: float | None = None):
+    def estimate(self, image: Image.Image, size: str | None = None, grams: float | None = None,
+                 return_portion: bool = False):
+        """size=None و grams=None ← الكمية بتتقدّر من الصورة تلقائي."""
         preds = self.classifier.predict(image, top_k=5)
-        return self.calculator.estimate(preds, size=size, grams=grams)
+        portion = None
+        if not grams and size is None:
+            portion = estimate_food_area(image)
+        result = self.calculator.estimate(preds, size=size, grams=grams,
+                                          food_area_cm2=portion.food_area_cm2 if portion else None)
+        return (result, portion) if return_portion else result
+
+
+SOURCE_LABEL = {
+    "user": "الوزن اللي انت كتبته",
+    "size": "حجم الطبق اللي اخترته",
+    "image": "متقدّرة من الصورة",
+    "default": "الحصة المعتادة (ملقيناش طبق واضح في الصورة)",
+}
 
 
 def format_result(r: dict) -> str:
+    area = f"، مساحة الأكل ~{r['food_area_cm2']} سم²" if r.get("food_area_cm2") and r["portion_source"] == "image" else ""
     lines = [
         f"🍽️  {r['name_ar']} ({r['food']}) — ثقة {r['confidence']:.0%}",
-        f"⚖️  الكمية: ~{r['portion_g']} جرام",
+        f"⚖️  الكمية: ~{r['portion_g']} جرام ({SOURCE_LABEL[r['portion_source']]}{area})",
         f"🔥 السعرات: ~{r['calories']} kcal  (بين {r['calories_range'][0]} و {r['calories_range'][1]})",
     ]
     if r["uncertain"]:
@@ -56,7 +73,7 @@ def format_result(r: dict) -> str:
 
 
 if __name__ == "__main__":
-    # python -m src.predict image.jpg [small|medium|large]
-    size = sys.argv[2] if len(sys.argv) > 2 else "medium"
+    # python -m src.predict image.jpg [small|medium|large]   (من غير حجم ← تقدير من الصورة)
+    size = sys.argv[2] if len(sys.argv) > 2 else None
     est = CalorieEstimator()
     print(format_result(est.estimate(Image.open(sys.argv[1]), size=size)))

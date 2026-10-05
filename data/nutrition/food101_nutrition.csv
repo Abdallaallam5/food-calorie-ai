@@ -1,102 +1,102 @@
-food,name_ar,kcal_per_100g,serving_g
-apple_pie,فطيرة تفاح,265,125
-baby_back_ribs,ضلوع مشوية,290,300
-baklava,بقلاوة,430,60
-beef_carpaccio,كارباتشيو لحم,150,100
-beef_tartare,تارتار لحم,190,150
-beet_salad,سلطة بنجر,90,200
-beignets,بينييه,390,90
-bibimbap,بيبيمباب,150,450
-bread_pudding,بودنج عيش,220,150
-breakfast_burrito,بوريتو فطار,210,250
-bruschetta,بروسكيتا,200,120
-caesar_salad,سلطة سيزر,150,250
-cannoli,كانولي,370,80
-caprese_salad,سلطة كابريزي,160,200
-carrot_cake,كيكة جزر,410,110
-ceviche,سيفيتشي,90,200
-cheese_plate,طبق جبن,380,100
-cheesecake,تشيز كيك,320,120
-chicken_curry,كاري فراخ,150,300
-chicken_quesadilla,كاساديا فراخ,270,200
-chicken_wings,أجنحة فراخ,260,200
-chocolate_cake,كيكة شوكولاتة,370,110
-chocolate_mousse,موس شوكولاتة,250,120
-churros,تشوروز,400,80
-clam_chowder,شوربة محار,90,250
-club_sandwich,كلوب ساندويتش,240,250
-crab_cakes,كرب كيك,220,150
-creme_brulee,كريم بروليه,280,120
-croque_madame,كروك مدام,270,250
-cup_cakes,كب كيك,380,70
-deviled_eggs,بيض محشي,200,100
-donuts,دونتس,420,70
-dumplings,دامبلنج,200,150
-edamame,إدامامي,120,150
-eggs_benedict,بيض بنديكت,230,250
-escargots,قواقع,180,100
-falafel,طعمية,330,120
-filet_mignon,فيليه,270,200
-fish_and_chips,سمك وبطاطس,230,350
-foie_gras,فوا جرا,460,60
-french_fries,بطاطس محمرة,310,150
-french_onion_soup,شوربة بصل,70,300
-french_toast,فرنش توست,230,150
-fried_calamari,كاليماري مقلي,230,150
-fried_rice,رز مقلي,170,300
-frozen_yogurt,فروزن زبادي,160,150
-garlic_bread,عيش بالتوم,350,80
-gnocchi,نوكي,160,250
-greek_salad,سلطة يوناني,110,250
-grilled_cheese_sandwich,ساندويتش جبنة مشوي,340,150
-grilled_salmon,سلمون مشوي,210,180
-guacamole,جواكامولي,160,100
-gyoza,جيوزا,210,150
-hamburger,هامبرجر,260,220
-hot_and_sour_soup,شوربة حار وحامض,50,300
-hot_dog,هوت دوج,290,150
-huevos_rancheros,بيض رانشيروس,170,300
-hummus,حمص,170,100
-ice_cream,آيس كريم,210,100
-lasagna,لازانيا,160,300
-lobster_bisque,شوربة لوبستر,110,250
-lobster_roll_sandwich,ساندويتش لوبستر,230,200
-macaroni_and_cheese,مكرونة بالجبنة,190,250
-macarons,ماكرون,400,50
-miso_soup,شوربة ميسو,30,250
-mussels,بلح البحر,170,200
-nachos,ناتشوز,300,200
-omelette,أومليت,155,150
-onion_rings,حلقات بصل,330,120
-oysters,محار,70,150
-pad_thai,باد تاي,180,300
-paella,باييلا,160,350
-pancakes,بان كيك,230,150
-panna_cotta,بانا كوتا,230,120
-peking_duck,بط بكيني,280,200
-pho,شوربة فو,60,500
-pizza,بيتزا,270,250
-pork_chop,بورك تشوب,230,200
-poutine,بوتين,230,300
-prime_rib,برايم ريب,340,250
-pulled_pork_sandwich,ساندويتش بولد بورك,240,250
-ramen,رامن,90,550
-ravioli,رافيولي,180,250
-red_velvet_cake,كيكة ريد فيلفيت,370,110
-risotto,ريزوتو,140,300
-samosa,سمبوسة,260,100
-sashimi,ساشيمي,130,150
-scallops,اسكالوب بحري,140,150
-seaweed_salad,سلطة أعشاب بحرية,70,100
-shrimp_and_grits,جمبري وجريتس,160,300
-spaghetti_bolognese,سباجيتي بولونيز,150,350
-spaghetti_carbonara,سباجيتي كاربونارا,210,300
-spring_rolls,سبرينج رول,220,120
-steak,ستيك,250,250
-strawberry_shortcake,كيكة فراولة,270,130
-sushi,سوشي,150,200
-tacos,تاكو,220,200
-takoyaki,تاكوياكي,180,150
-tiramisu,تيراميسو,280,120
-tuna_tartare,تارتار تونة,140,150
-waffles,وافل,290,120
+food,name_ar,kcal_per_100g,serving_g,shape
+apple_pie,فطيرة تفاح,265,125,dessert
+baby_back_ribs,ضلوع مشوية,290,300,piece
+baklava,بقلاوة,430,60,dessert
+beef_carpaccio,كارباتشيو لحم,150,100,flat
+beef_tartare,تارتار لحم,190,150,piece
+beet_salad,سلطة بنجر,90,200,salad
+beignets,بينييه,390,90,piece
+bibimbap,بيبيمباب,150,450,bowl
+bread_pudding,بودنج عيش,220,150,dessert
+breakfast_burrito,بوريتو فطار,210,250,piece
+bruschetta,بروسكيتا,200,120,flat
+caesar_salad,سلطة سيزر,150,250,salad
+cannoli,كانولي,370,80,piece
+caprese_salad,سلطة كابريزي,160,200,salad
+carrot_cake,كيكة جزر,410,110,dessert
+ceviche,سيفيتشي,90,200,salad
+cheese_plate,طبق جبن,380,100,piece
+cheesecake,تشيز كيك,320,120,dessert
+chicken_curry,كاري فراخ,150,300,mound
+chicken_quesadilla,كاساديا فراخ,270,200,flat
+chicken_wings,أجنحة فراخ,260,200,piece
+chocolate_cake,كيكة شوكولاتة,370,110,dessert
+chocolate_mousse,موس شوكولاتة,250,120,dessert
+churros,تشوروز,400,80,piece
+clam_chowder,شوربة محار,90,250,bowl
+club_sandwich,كلوب ساندويتش,240,250,piece
+crab_cakes,كرب كيك,220,150,piece
+creme_brulee,كريم بروليه,280,120,dessert
+croque_madame,كروك مدام,270,250,flat
+cup_cakes,كب كيك,380,70,piece
+deviled_eggs,بيض محشي,200,100,piece
+donuts,دونتس,420,70,piece
+dumplings,دامبلنج,200,150,piece
+edamame,إدامامي,120,150,piece
+eggs_benedict,بيض بنديكت,230,250,flat
+escargots,قواقع,180,100,piece
+falafel,طعمية,330,120,piece
+filet_mignon,فيليه,270,200,piece
+fish_and_chips,سمك وبطاطس,230,350,piece
+foie_gras,فوا جرا,460,60,piece
+french_fries,بطاطس محمرة,310,150,piece
+french_onion_soup,شوربة بصل,70,300,bowl
+french_toast,فرنش توست,230,150,flat
+fried_calamari,كاليماري مقلي,230,150,piece
+fried_rice,رز مقلي,170,300,mound
+frozen_yogurt,فروزن زبادي,160,150,dessert
+garlic_bread,عيش بالتوم,350,80,flat
+gnocchi,نوكي,160,250,mound
+greek_salad,سلطة يوناني,110,250,salad
+grilled_cheese_sandwich,ساندويتش جبنة مشوي,340,150,flat
+grilled_salmon,سلمون مشوي,210,180,piece
+guacamole,جواكامولي,160,100,mound
+gyoza,جيوزا,210,150,piece
+hamburger,هامبرجر,260,220,piece
+hot_and_sour_soup,شوربة حار وحامض,50,300,bowl
+hot_dog,هوت دوج,290,150,piece
+huevos_rancheros,بيض رانشيروس,170,300,flat
+hummus,حمص,170,100,mound
+ice_cream,آيس كريم,210,100,dessert
+lasagna,لازانيا,160,300,mound
+lobster_bisque,شوربة لوبستر,110,250,bowl
+lobster_roll_sandwich,ساندويتش لوبستر,230,200,piece
+macaroni_and_cheese,مكرونة بالجبنة,190,250,mound
+macarons,ماكرون,400,50,piece
+miso_soup,شوربة ميسو,30,250,bowl
+mussels,بلح البحر,170,200,piece
+nachos,ناتشوز,300,200,flat
+omelette,أومليت,155,150,flat
+onion_rings,حلقات بصل,330,120,piece
+oysters,محار,70,150,piece
+pad_thai,باد تاي,180,300,mound
+paella,باييلا,160,350,mound
+pancakes,بان كيك,230,150,flat
+panna_cotta,بانا كوتا,230,120,dessert
+peking_duck,بط بكيني,280,200,piece
+pho,شوربة فو,60,500,bowl
+pizza,بيتزا,270,250,flat
+pork_chop,بورك تشوب,230,200,piece
+poutine,بوتين,230,300,mound
+prime_rib,برايم ريب,340,250,piece
+pulled_pork_sandwich,ساندويتش بولد بورك,240,250,piece
+ramen,رامن,90,550,bowl
+ravioli,رافيولي,180,250,mound
+red_velvet_cake,كيكة ريد فيلفيت,370,110,dessert
+risotto,ريزوتو,140,300,mound
+samosa,سمبوسة,260,100,piece
+sashimi,ساشيمي,130,150,piece
+scallops,اسكالوب بحري,140,150,piece
+seaweed_salad,سلطة أعشاب بحرية,70,100,salad
+shrimp_and_grits,جمبري وجريتس,160,300,mound
+spaghetti_bolognese,سباجيتي بولونيز,150,350,mound
+spaghetti_carbonara,سباجيتي كاربونارا,210,300,mound
+spring_rolls,سبرينج رول,220,120,piece
+steak,ستيك,250,250,piece
+strawberry_shortcake,كيكة فراولة,270,130,dessert
+sushi,سوشي,150,200,piece
+tacos,تاكو,220,200,flat
+takoyaki,تاكوياكي,180,150,piece
+tiramisu,تيراميسو,280,120,dessert
+tuna_tartare,تارتار تونة,140,150,piece
+waffles,وافل,290,120,flat
