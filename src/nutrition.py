@@ -65,6 +65,8 @@ class CalorieCalculator:
             g = food_area_cm2 * density
             g = min(max(g, info["serving_g"] * MIN_FACTOR), info["serving_g"] * MAX_FACTOR)
             return g, "image"
+        if food_area_cm2 and density is None:
+            return info["serving_g"], "bowl"
         return info["serving_g"], "default"
 
     def estimate(self, predictions: list[dict], size: str | None = None,
