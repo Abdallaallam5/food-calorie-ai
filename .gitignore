@@ -1,0 +1,5 @@
+data/food-101/
+checkpoints/
+__pycache__/
+*.pth
+.ipynb_checkpoints/
