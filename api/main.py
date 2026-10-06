@@ -17,7 +17,8 @@ from pydantic import BaseModel
 from src.portion import visualize
 from src.predict import CalorieEstimator
 
-WEB_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "web")
+# نفس الموقع اللي على GitHub Pages (بيشتغل في المتصفح، والـ API متاح جنبه)
+WEB_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "docs")
 MAX_UPLOAD_MB = 10
 SIZES = {"small", "medium", "large"}
 

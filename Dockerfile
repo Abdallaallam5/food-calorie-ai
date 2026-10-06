@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements-deploy.txt
 
 COPY src ./src
 COPY api ./api
-COPY web ./web
+COPY docs ./docs
 COPY weights ./weights
 COPY data/nutrition ./data/nutrition
 

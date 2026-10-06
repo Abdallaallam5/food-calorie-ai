@@ -5,3 +5,5 @@ pillow
 matplotlib
 opencv-python-headless
 numpy
+onnx
+onnxruntime
