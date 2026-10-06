@@ -1,5 +1,5 @@
 # بينشر الموقع على Hugging Face Spaces مع كل push على main.
-# محتاج secret واحد بس في إعدادات الريبو: HF_TOKEN (توكن Hugging Face بصلاحية Write).
+# محتاج secret واحد بس في إعدادات الريبو: HF_TOKEN (توكن Hugging Face نوعه Write).
 name: Deploy to Hugging Face
 
 on:
@@ -11,41 +11,15 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
 
       - name: Deploy
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          SPACE_NAME: food-calorie-ai
         run: |
-          set -euo pipefail
-          if [ -z "${HF_TOKEN}" ]; then
-            echo "::warning::HF_TOKEN مش موجود في Secrets، النشر اتلغى"
-            exit 0
-          fi
-
-          HF_USER=$(curl -sf -H "Authorization: Bearer ${HF_TOKEN}" https://huggingface.co/api/whoami-v2 | jq -r .name)
-          SPACE="${HF_USER}/${SPACE_NAME}"
-          echo "Deploying to ${SPACE}"
-
-          # نعمل الـ Space لو مش موجود (409 = موجود بالفعل)
-          curl -s -o /dev/null -w "create space: %{http_code}\n" -X POST https://huggingface.co/api/repos/create \
-            -H "Authorization: Bearer ${HF_TOKEN}" -H "Content-Type: application/json" \
-            -d "{\"type\":\"space\",\"name\":\"${SPACE_NAME}\",\"sdk\":\"docker\",\"private\":false}"
-
-          # Hugging Face محتاج إعدادات في أول الـ README
-          { printf -- '---\ntitle: Food Calorie AI\nemoji: 🍽️\ncolorFrom: yellow\ncolorTo: red\nsdk: docker\napp_port: 7860\npinned: false\n---\n\n'; cat README.md; } > README.tmp
-          mv README.tmp README.md
-
-          # الملفات الأكبر من 10MB لازم تترفع بـ Git LFS
-          rm -rf .git
-          git init -q -b main
-          git lfs install --local
-          git lfs track "*.pth"
-          git add -A
-          git -c user.name="github-actions" -c user.email="actions@github.com" commit -qm "Deploy ${GITHUB_SHA::7}"
-          git push --force "https://${HF_USER}:${HF_TOKEN}@huggingface.co/spaces/${SPACE}" main
-
-          URL="https://$(echo "${HF_USER}" | tr '[:upper:]' '[:lower:]' | tr '_.' '--')-${SPACE_NAME}.hf.space"
-          echo "### 🚀 الموقع: ${URL}" >> "$GITHUB_STEP_SUMMARY"
-          echo "Live at ${URL} (البناء على Hugging Face بياخد 5-10 دقايق)"
+          pip install -q huggingface_hub
+          python .github/scripts/deploy_hf.py
