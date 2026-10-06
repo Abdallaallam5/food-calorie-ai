@@ -2,7 +2,13 @@
 
 موديل ذكاء اصطناعي بيشوف صورة طبق أكل ويقدّر **نوعه** و**كميته** و**سعراته الحرارية**.
 
-## 🚀 جرّبه في أقل من دقيقة
+## 🌐 الموقع
+
+**https://abdallaallam5-food-calorie-ai.hf.space**
+
+ارفع صورة أو صوّر الطبق من موبايلك، وهتاخد نوع الأكل وكميته وسعراته. ولو الموديل غلط في الصنف، تقدر تختار الصح والسعرات تتحسب تاني.
+
+## 🧪 أو جرّبه على Colab
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Abdallaallam5/food-calorie-ai/blob/main/notebooks/colab_runner.ipynb)
 
@@ -47,21 +53,40 @@ food-calorie-ai/
 │   ├── portion.py    # تقدير مساحة الأكل من الصورة
 │   ├── nutrition.py  # حساب السعرات من جدول التغذية
 │   └── predict.py    # صورة ← صنف ← كمية ← سعرات
+├── api/main.py       # الباك إند (FastAPI)
+├── web/index.html    # واجهة الموقع
 ├── weights/          # الموديل المتدرب الجاهز
 ├── notebooks/
 │   └── colab_runner.ipynb   # تجربة + تدريب على Colab
 ├── data/nutrition/   # جدول السعرات للـ 101 صنف
-└── requirements.txt
+├── Dockerfile        # تشغيل الموقع على أي سيرفر
+└── .github/workflows/deploy-hf.yml  # نشر تلقائي على Hugging Face
 ```
 
 ## التشغيل على جهازك
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt fastapi "uvicorn[standard]" python-multipart
+uvicorn api.main:app --port 7860         # الموقع على http://localhost:7860
 python -m src.predict pizza.jpg          # الكمية متقدّرة من الصورة
 python -m src.predict pizza.jpg large    # أو حدد الحجم بنفسك
 python -m src.train                      # تدريب من الأول (محتاج GPU)
 ```
+
+## الـ API
+
+| Endpoint | الوظيفة |
+|---|---|
+| `POST /api/predict` | بياخد `image` (و`size` أو `grams` اختياري) ويرجّع الصنف والكمية والسعرات |
+| `POST /api/calories` | إعادة الحساب لصنف يختاره المستخدم: `{"food": "pizza", "food_area_cm2": 200}` |
+| `GET /api/foods` | كل الأصناف اللي الموديل يعرفها |
+| `GET /docs` | توثيق تفاعلي (Swagger) |
+
+## النشر
+
+كل push على `main` بيتنشر لوحده على Hugging Face Spaces عن طريق GitHub Actions. محتاج بس secret اسمه `HF_TOKEN` في إعدادات الريبو.
+
+الـ `Dockerfile` كمان بيشتغل على أي منصة بتدعم Docker (Railway, Render, Fly.io...) بشرط يكون فيها 1GB رامات على الأقل.
 
 ## خطة العمل
 
@@ -69,5 +94,5 @@ python -m src.train                      # تدريب من الأول (محتا�
 - [x] جدول السعرات وحساب الكالوريز
 - [x] تقدير الكمية من الصورة
 - [ ] إضافة الأكل المصري
-- [ ] API بـ FastAPI
-- [ ] واجهة ويب + Deploy
+- [x] API بـ FastAPI
+- [x] واجهة ويب + Deploy

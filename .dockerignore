@@ -1,0 +1,7 @@
+.git
+.github
+notebooks
+checkpoints
+data/food-101
+**/__pycache__
+*.ipynb

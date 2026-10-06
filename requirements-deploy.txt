@@ -1,0 +1,8 @@
+# مكتبات السيرفر (PyTorch بيتسطّب لوحده في الـ Dockerfile بنسخة الـ CPU)
+timm>=0.9
+pillow
+numpy
+opencv-python-headless
+fastapi
+uvicorn[standard]
+python-multipart
